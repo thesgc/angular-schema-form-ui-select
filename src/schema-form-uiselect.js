@@ -149,7 +149,15 @@ angular.module('schemaForm').config(
     };
   })
   .controller('UiSelectController', ['$scope', '$http', function($scope, $http) {
-    
+    $scope.tagFunction = function(content){
+    var item = {
+      value: content,
+      label: content,
+      description : '',
+      group: ''
+    }
+    return item;
+  };
     $scope.fetchResult = function (schema, options, search) {
         if(options) {
           if (options.callback) {
