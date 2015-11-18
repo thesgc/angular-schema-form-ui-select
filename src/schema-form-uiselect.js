@@ -160,6 +160,7 @@ angular.module('schemaForm').config(
               values.push(item.value.toLowerCase().trim());
             }
         });
+        console.log(out);
         return out;
     }}
   ).controller('UiSelectController', ['$scope', '$http', function($scope, $http) {
