@@ -153,11 +153,13 @@ angular.module('schemaForm').config(
     return function(items, selected) {
         var out = [];
         var values = selected.map(function(i){
-          return i.value;
+          return i.value.toLowerCase().trim();
         })
         angular.forEach(items, function(item){
-            if(values.indexOf(item.value)==-1){
+            if(values.indexOf(item.value.toLowerCase().trim())==-1){
               out.push(item);
+              //just to be sure
+              values.push(item.value.toLowerCase().trim());
             }
         });
         return out;
