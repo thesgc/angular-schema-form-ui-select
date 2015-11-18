@@ -149,10 +149,12 @@ angular.module('schemaForm').config(
     };
   }).filter('dupesFilter', function() {
     return function(items, selected) {
-        console.log(selected);
         var out = [];
+        var values = selected.map(function(i){
+          return i.value;
+        })
         angular.forEach(items, function(item){
-            if(selected.indexOf(item.value)==-1){
+            if(values.indexOf(item.value)==-1){
               out.push(item);
             }
         });

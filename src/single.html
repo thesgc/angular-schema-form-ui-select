@@ -16,7 +16,7 @@
       <ui-select-match placeholder="{{form.placeholder || form.schema.placeholder || ('placeholders.select' | translate)}}">{{select_model.selected.label}}&nbsp;<small>{{(select_model.selected.isTag===true ? form.options.taggingLabel : '')}}</small></ui-select-match>
       <!--repeat code because tagging does not display properly under group by but is still useful -->
       <ui-select-choices  refresh="form.options.refreshMethod(form.schema, $select.search)"
-             refresh-delay="form.options.refreshDelay" repeat="item in form.schema.items | propsFilter: {label: $select.search, description: (form.options.searchDescription===true ? $select.search : 'NOTSEARCHINGFORTHIS') }">
+             refresh-delay="form.options.refreshDelay" repeat="item in form.schema.items | propsFilter: {label: $select.search, description: (form.options.searchDescription===true ? $select.search : 'NOTSEARCHINGFORTHIS') } | dupesFilter : [select_model.selected]">
         <div ng-if="item.isTag" ng-bind-html="'<div>' + (item.label   | highlight: $select.search) + ' ' + form.options.taggingLabel + '</div><div class=&quot;divider&quot;></div>'"></div><div ng-if="!item.isTag" ng-bind-html="item.label + item.isTag| highlight: $select.search"></div>
       <div ng-if="item.description"> 
         <span  ng-bind-html="'<small>' + (''+item.description | highlight: (form.options.searchDescriptions===true ? $select.search : 'NOTSEARCHINGFORTHIS')) + '</small>'"></span>
@@ -30,7 +30,7 @@
       theme="bootstrap" ng-disabled="form.disabled" on-select="$$value$$=$item.value" class="{{form.options.uiClass}}">
       <ui-select-match placeholder="{{form.placeholder || form.schema.placeholder || ('placeholders.select' | translate)}}">{{select_model.selected.label}}&nbsp;<small>{{(select_model.selected.isTag===true ? form.options.taggingLabel : '')}}</small></ui-select-match>
       <ui-select-choices group-by="form.options.groupBy" refresh="form.options.refreshMethod(form.schema, $select.search)"
-             refresh-delay="form.options.refreshDelay" repeat="item in form.schema.items | propsFilter: {label: $select.search, description: (form.options.searchDescription===true ? $select.search : 'NOTSEARCHINGFORTHIS') }">
+             refresh-delay="form.options.refreshDelay" repeat="item in form.schema.items | propsFilter: {label: $select.search, description: (form.options.searchDescription===true ? $select.search : 'NOTSEARCHINGFORTHIS') } | dupesFilter : [select_model.selected]">
         <div ng-if="item.isTag" ng-bind-html="'<div>' + (item.label   | highlight: $select.search) + ' ' + form.options.taggingLabel + '</div><div class=&quot;divider&quot;></div>'"></div><div ng-if="!item.isTag" ng-bind-html="item.label + item.isTag| highlight: $select.search"></div>
       <div ng-if="item.description"> 
         <span  ng-bind-html="'<small>' + (''+item.description | highlight: (form.options.searchDescriptions===true ? $select.search : 'NOTSEARCHINGFORTHIS')) + '</small>'"></span>
